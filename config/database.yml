@@ -1,0 +1,35 @@
+development:
+  adapter: mysql2
+  database: library_development
+  pool: 5
+  username: root
+  password:
+  encoding: utf8
+  socket: /tmp/mysql.sock
+
+test:
+  adapter: mysql2
+  database: library_test
+  pool: 5
+  username: root
+  password:
+  encoding: utf8
+  socket: /tmp/mysql.sock
+
+staging:
+  adapter: mysql2
+  database: library_staging
+  pool: 5
+  host:
+  username: root
+  password:
+  encoding: utf8
+
+production:
+  adapter: mysql2
+  database: library_production
+  pool: 5
+  host:
+  username: root
+  password:
+  encoding: utf8
