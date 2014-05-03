@@ -5,27 +5,27 @@ describe BookController do
   end
 
   describe "#create" do
-    context "typeが指定されていない場合" do
+    context "必須パラメータtypeが指定されていない場合" do
       it "「result：-1、error_code：1」が返却されること" do
-        post :create, attributes_for(:rails_book).delete(:type)
+        post :create, attributes_for(:rails_book).select{|k,v| k =~ /name|outline/}
         result = JSON.parse(response.body)
         expect(result["result"]).to eq -1
         expect(result["error"]["error_code"]).to eq 1
       end
     end
 
-    context "nameが指定されていない場合" do
+    context "必須パラメータnameが指定されていない場合" do
       it "「result：-1、error_code：1」が返却されること" do
-        post :create, attributes_for(:rails_book).delete(:name)
+        post :create, attributes_for(:rails_book).select{|k,v| k =~ /type|outline/}
         result = JSON.parse(response.body)
         expect(result["result"]).to eq -1
         expect(result["error"]["error_code"]).to eq 1
       end
     end
 
-    context "outlineが指定されていない場合" do
+    context "必須パラメータoutlineが指定されていない場合" do
       it "「result：-1、error_code：1」が返却されること" do
-        post :create, attributes_for(:rails_book).delete(:outline)
+        post :create, attributes_for(:rails_book).select{|k,v| k =~ /type|name/}
         result = JSON.parse(response.body)
         expect(result["result"]).to eq -1
         expect(result["error"]["error_code"]).to eq 1
